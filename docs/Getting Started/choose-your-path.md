@@ -1,5 +1,5 @@
 ---
-title: Choose Your Path
+title: What You Can Do Today (MVP Capabilities)
 deprecated: false
 hidden: false
 metadata:
