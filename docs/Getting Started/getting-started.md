@@ -2,47 +2,46 @@
 title: Welcome to Lattix
 hidden: false
 ---
-<Callout icon="📘" theme="info">
-  **Template:**  Delete this callout and edit this page with your content and links.
-</Callout>
+Lattix helps organizations apply zero trust, data-centric security across collaboration and data-sharing workflows.
 
-<Cards>
-  {/* Edit the props below to customize these components */}
-  <Card title="Quick Start" href="#" icon="fa-duotone fa-rocket-launch">Learn how to get started with our product</Card>
+This documentation is written for current SaaS users and focuses on practical, day-to-day usage for:
 
-  <Card title="API Reference" href="#" icon="fa-duotone fa-code-simple">Explore endpoints and build your integration</Card>
+- Tenant Admins
+- Security Users
+- Passport Users
+- Data Room Users
 
-  <Card title="Build with AI" href="#" icon="fa-duotone fa-sparkles">Use LLM features to automate your workflow</Card>
-</Cards>
+## Start Here
 
-<br />
+If you are new to the platform, read these pages in order:
 
-## Recent Releases
+1. **Prerequisites**
+2. **What You Can Do Today (MVP Capabilities)**
+3. **Account & Workspace Setup**
+4. **User Roles in Lattix**
+5. **First 30 Minutes in Lattix**
 
-<Cards>
-  <Card isNew kind="tile" title="v2.0 Migration" href="#" icon="fa-duotone fa-magnifying-glass">Everything you need to upgrade</Card>
+## Role-Based Quick Overviews
 
-  <Card kind="tile" title="Webhooks" href="#" icon="fa-duotone fa-bullhorn">Real-time events are now available</Card>
+- **Tenant Admin Quick Overview**: Configure workspace settings, access models, connectors, and policy workflows.
+- **Security User Quick Overview**: Review data lineage, investigate access decisions, and track security actions.
+- **Passport User Quick Overview**: Request and use controlled access in supported Passport flows.
+- **Data Room User Quick Overview**: Create and participate in governed data rooms.
 
-  <Card kind="tile" title="Android SDK" href="#" icon="fa-duotone fa-robot">Our native Android library is out of beta</Card>
-</Cards>
+## Scope of This Documentation
 
-<br />
+This content intentionally covers:
 
-## The Basics
+- Customer-visible SaaS capabilities available now
+- Recommended operational patterns for secure adoption
+- Guidance that can be safely shared with customer teams
 
-<Cards>
-  <Card kind="tile" title="Customize" href="#" icon="fa-duotone fa-brush">Style the widget to match your brand</Card>
+This content intentionally does **not** include:
 
-  <Card kind="tile" title="Integrations" href="#" icon="fa-duotone fa-arrow-down-left-and-arrow-up-right-to-center">Connect with third-party services</Card>
+- Internal architecture details not required for product use
+- Sensitive implementation specifics
+- Credentials, keys, tokens, or environment secrets
 
-  <Card kind="tile" title="CLI" href="#" icon="fa-duotone fa-terminal">Manage resources from your terminal</Card>
+## Next Step
 
-  <Card kind="tile" title="Security" href="" icon="fa-duotone fa-shield-dog">Learn how we secure your data</Card>
-
-  <Card kind="tile" title="Common Issues" href="" icon="fa-duotone fa-file-circle-info">Troubleshoot common issues</Card>
-
-  <Card kind="tile" title="Sync" href="#" icon="fa-duotone fa-code-compare">Connect to a storage provider</Card>
-</Cards>
-
-<br />
+Continue with **Prerequisites**.
