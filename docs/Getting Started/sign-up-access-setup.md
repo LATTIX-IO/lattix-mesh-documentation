@@ -1,5 +1,5 @@
 ---
-title: Sign Up / Access Setup
+title: Prerequisites
 deprecated: false
 hidden: false
 metadata:
