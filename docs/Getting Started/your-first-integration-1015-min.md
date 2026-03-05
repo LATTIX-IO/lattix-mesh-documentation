@@ -1,5 +1,5 @@
 ---
-title: Your First Integration (10–15 min)
+title: Account & Workspace Setup
 deprecated: false
 hidden: false
 metadata:
