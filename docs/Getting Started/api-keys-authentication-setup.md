@@ -1,5 +1,5 @@
 ---
-title: API Keys & Authentication Setup
+title: Create API Credentials
 deprecated: false
 hidden: false
 metadata:
