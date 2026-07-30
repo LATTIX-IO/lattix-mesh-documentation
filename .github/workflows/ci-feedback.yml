@@ -1,0 +1,36 @@
+name: CI Feedback to Linear
+
+on:
+  workflow_run:
+    workflows:
+      - "Independent CI"
+      - "Security and threat model"
+    types:
+      - completed
+
+concurrency:
+  group: ci-feedback-${{ github.event.repository.full_name }}
+  cancel-in-progress: false
+
+permissions:
+  actions: read
+  contents: read
+  pull-requests: read
+
+jobs:
+  feedback:
+    name: Classify and reconcile Linear defect
+    if: >-
+      github.event.workflow_run.head_repository.full_name == github.repository &&
+      contains(fromJSON('["pull_request","push","release","schedule","workflow_dispatch"]'), github.event.workflow_run.event)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Process trusted workflow result
+        uses: LATTIX-IO/lattix-cicd-pentest/.github/actions/linear-ci-feedback@cfbb7e5c5e02211f8b93f229df604ea4b09e2de0
+        with:
+          github-token: ${{ github.token }}
+          linear-api-key: ${{ secrets.LINEAR_CI_FEEDBACK_API_KEY }}
+          project-slug: "2a4ba7a120dc"
+          team-key: "MESH"
+
