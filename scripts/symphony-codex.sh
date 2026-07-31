@@ -13,6 +13,7 @@ case "${reasoning_effort}" in
 esac
 
 codex_args=(
+  --disable apps
   -c 'service_tier="fast"'
   -c "model_reasoning_effort=\"${reasoning_effort}\""
 )

@@ -51,10 +51,15 @@ if (Test-Path -LiteralPath $dotenvPath) {
     }
 }
 
-foreach ($command in @("git", "codex")) {
+foreach ($command in @("git", "gh", "codex")) {
     if (-not (Get-Command $command -ErrorAction SilentlyContinue)) {
         throw "Required command is not available: $command"
     }
+}
+
+& gh auth status --hostname github.com 2>&1 | Out-Null
+if ($LASTEXITCODE -ne 0) {
+    throw "GitHub CLI is not authenticated for github.com. Run: gh auth login --hostname github.com"
 }
 
 $gitBash = Get-Command "bash" -ErrorAction SilentlyContinue
@@ -77,14 +82,26 @@ $workflow = Get-Content -Raw -LiteralPath $workflowPath
 foreach ($requiredText in @(
     "kind: linear",
     "api_key: `$LINEAR_API_KEY",
-    'bash "$SYMPHONY_CODEX_WRAPPER"'
+    'bash "$SYMPHONY_CODEX_WRAPPER"',
+    "## Unattended GitHub contract"
 )) {
     if (-not $workflow.Contains($requiredText)) {
         throw "WORKFLOW.md is missing required configuration: $requiredText"
     }
 }
 
+
+$codexWrapperPath = Join-Path $repoRoot "scripts\symphony-codex.sh"
+if (-not (Test-Path -LiteralPath $codexWrapperPath)) {
+    throw "Missing Symphony Codex wrapper: $codexWrapperPath"
+}
+$codexWrapper = Get-Content -Raw -LiteralPath $codexWrapperPath
+if (-not $codexWrapper.Contains("--disable apps")) {
+    throw "Symphony Codex wrapper must disable app connectors for unattended execution."
+}
+
 $codexArgs = @(
+    "--disable", "apps",
     "-c", 'service_tier="fast"',
     "-c", 'model_reasoning_effort="high"',
     "--version"

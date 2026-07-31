@@ -105,6 +105,12 @@ Use the issue description, labels, blockers, linked assets, and repository conte
 - Do not expand the issue to include opportunistic cleanup. Create or recommend a separate follow-up issue for meaningful out-of-scope improvements, especially security, reliability, or tech-debt findings.
 - For production, security, IaC, GitOps, data, or migration changes, include rollback notes and any threat assumptions in the final handoff.
 
+## Unattended GitHub contract
+
+Use the local git command and authenticated gh CLI for branch, pull-request, review, and check
+operations. Do not use GitHub MCP or app connectors in unattended Symphony runs because connector
+approval elicitations cannot be completed by the worker. If gh auth status --hostname github.com
+fails, record the blocker and stop without trying another external tool.
 ## Required execution flow
 
 1. Re-read the issue and inspect the current repository state before editing.
