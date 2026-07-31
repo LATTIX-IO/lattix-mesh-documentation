@@ -3,9 +3,11 @@ name: Security and threat model
 on:
   pull_request:
     branches:
+      - v0.1.0
       - main
   push:
     branches:
+      - v0.1.0
       - main
   schedule:
     - cron: "17 6 * * 1"
@@ -17,13 +19,21 @@ permissions:
 jobs:
   security:
     name: Threat model and pentest gate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
     permissions:
       contents: read
       security-events: write
-    uses: LATTIX-IO/lattix-cicd-pentest/.github/workflows/ci-security-gate.yml@cfbb7e5c5e02211f8b93f229df604ea4b09e2de0
-    with:
-      source-ref: ${{ github.event.pull_request.head.sha || github.sha }}
-      target-url: ${{ github.event_name == 'schedule' && vars.PENTEST_TARGET_URL || '' }}
-      openapi-url: ${{ github.event_name == 'schedule' && vars.PENTEST_OPENAPI_URL || '' }}
-      require-active-pentest: ${{ github.event_name == 'schedule' && vars.PENTEST_REQUIRED == 'true' }}
-
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Run repository-local Lattix security lifecycle
+        uses: ./.github/actions/ci-security-gate
+        with:
+          source-revision: ${{ github.event.pull_request.head.sha || github.sha }}
+          target-url: ${{ github.event_name == 'schedule' && vars.PENTEST_TARGET_URL || '' }}
+          openapi-url: ${{ github.event_name == 'schedule' && vars.PENTEST_OPENAPI_URL || '' }}
+          require-active-pentest: ${{ github.event_name == 'schedule' && vars.PENTEST_REQUIRED == 'true' }}

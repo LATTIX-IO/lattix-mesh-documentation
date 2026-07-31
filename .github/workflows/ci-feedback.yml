@@ -26,11 +26,15 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
+      - name: Checkout trusted feedback engine
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
       - name: Process trusted workflow result
-        uses: LATTIX-IO/lattix-cicd-pentest/.github/actions/linear-ci-feedback@cfbb7e5c5e02211f8b93f229df604ea4b09e2de0
+        uses: ./.github/actions/linear-ci-feedback
         with:
           github-token: ${{ github.token }}
           linear-api-key: ${{ secrets.LINEAR_CI_FEEDBACK_API_KEY }}
           project-slug: "2a4ba7a120dc"
           team-key: "MESH"
-

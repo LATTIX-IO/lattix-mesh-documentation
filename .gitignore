@@ -1,6 +1,9 @@
 .DS_Store
 Thumbs.db
 .cgcignore
+__pycache__/
+*.py[cod]
+.env.symphony.local
 
 # Nexus AI memory — local, private pointers (never commit)
 CLAUDE.local.md
