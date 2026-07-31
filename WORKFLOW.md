@@ -1,15 +1,17 @@
 ---
 tracker:
   kind: linear
-  endpoint: https://api.linear.app/graphql
-  api_key: $LINEAR_API_KEY
-  project_slug: "2a4ba7a120dc"
+  provider:
+    endpoint: https://api.linear.app/graphql
+    api_key: $LINEAR_API_KEY
+    project_slug: "2a4ba7a120dc"
   required_labels:
     - eligible
     - lattix-mesh-documentation
   active_states:
     - Todo
     - In Progress
+    - Rework
   exclude_labels:
     - epic
   terminal_states:
@@ -21,7 +23,7 @@ tracker:
 polling:
   interval_ms: 30000
 workspace:
-  root: "D:/lattix/.symphony/workspaces/lattix-mesh-documentation"
+  root: "E:/lattix/.symphony/workspaces/lattix-mesh-documentation"
 hooks:
   timeout_ms: 120000
   after_create: |
@@ -44,9 +46,9 @@ agent:
     todo: 1
     in progress: 2
 codex:
-  command: codex app-server -c model="gpt-5.5" -c model_reasoning_effort="low"
+  command: bash "$SYMPHONY_CODEX_WRAPPER"
   turn_timeout_ms: 3600000
-  read_timeout_ms: 5000
+  read_timeout_ms: 30000
   stall_timeout_ms: 300000
   approval_policy: never
 symphony:
