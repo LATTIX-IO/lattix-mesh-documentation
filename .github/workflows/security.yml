@@ -3,9 +3,11 @@ name: Security and threat model
 on:
   pull_request:
     branches:
+      - v0.1.0
       - main
   push:
     branches:
+      - v0.1.0
       - main
   schedule:
     - cron: "17 6 * * 1"
@@ -26,4 +28,3 @@ jobs:
       target-url: ${{ github.event_name == 'schedule' && vars.PENTEST_TARGET_URL || '' }}
       openapi-url: ${{ github.event_name == 'schedule' && vars.PENTEST_OPENAPI_URL || '' }}
       require-active-pentest: ${{ github.event_name == 'schedule' && vars.PENTEST_REQUIRED == 'true' }}
-

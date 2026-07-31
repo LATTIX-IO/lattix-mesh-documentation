@@ -3,9 +3,11 @@ name: Independent CI
 on:
   pull_request:
     branches:
+      - v0.1.0
       - main
   push:
     branches:
+      - v0.1.0
       - main
   workflow_dispatch:
 
